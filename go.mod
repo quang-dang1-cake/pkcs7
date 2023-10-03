@@ -1,3 +1,3 @@
-module go.mozilla.org/pkcs7
+module github.com/quang-dang1-cake/pkcs7
 
 go 1.11

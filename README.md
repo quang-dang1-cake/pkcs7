@@ -1,6 +1,6 @@
 # pkcs7
 
-[![GoDoc](https://godoc.org/go.mozilla.org/pkcs7?status.svg)](https://godoc.org/go.mozilla.org/pkcs7)
+[![GoDoc](https://godoc.org/github.com/quang-dang1-cake/pkcs7?status.svg)](https://godoc.org/go.mozilla.org/pkcs7)
 [![Build Status](https://github.com/mozilla-services/pkcs7/workflows/CI/badge.svg?branch=master&event=push)](https://github.com/mozilla-services/pkcs7/actions/workflows/ci.yml?query=branch%3Amaster+event%3Apush)
 
 pkcs7 implements parsing and creating signed and enveloped messages.
@@ -15,8 +15,8 @@ import (
 	"encoding/pem"
 	"fmt"
 	"os"
-
-    "go.mozilla.org/pkcs7"
+	
+	"github.com/quang-dang1-cake/pkcs7"
 )
 
 func SignAndDetach(content []byte, cert *x509.Certificate, privkey *rsa.PrivateKey) (signed []byte, err error) {
