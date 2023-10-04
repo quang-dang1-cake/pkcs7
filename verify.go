@@ -1,6 +1,7 @@
 package pkcs7
 
 import (
+	"bytes"
 	"crypto/subtle"
 	"crypto/x509"
 	"crypto/x509/pkix"
@@ -210,17 +211,14 @@ func parseSignedData(data []byte) (*PKCS7, error) {
 	// Compound octet string
 	if compound.IsCompound {
 		if compound.Tag == asn1.TagOctetString {
-			rest, err := asn1.Unmarshal(compound.Bytes, &content)
-			if err != nil {
-				return nil, err
-			}
+			rest := bytes.Clone(compound.Bytes)
 			for len(rest) > 0 {
-				var nextContent []byte
-				rest, err = asn1.Unmarshal(rest, &nextContent)
+				var batchContent []byte
+				rest, err = asn1.Unmarshal(rest, &batchContent)
 				if err != nil {
 					return nil, err
 				}
-				content = append(content, nextContent...)
+				content = append(content, batchContent...)
 			}
 
 		} else {
